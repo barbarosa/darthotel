@@ -1,0 +1,4 @@
+name: "darthotel"
+version: "1.0.0"
+dependencies:
+  react: "0.7.3"
