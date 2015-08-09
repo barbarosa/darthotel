@@ -1,4 +1,9 @@
 name: "darthotel"
 version: "1.0.0"
+author: "Barbarosa Software Ltd"
 dependencies:
   react: "0.7.3"
+  http_server: "^0.9.5+1"
+  mustache: "0.2.3"
+  path: "1.3.6"
+  json_object: "1.0.18"
