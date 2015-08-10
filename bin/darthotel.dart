@@ -3,31 +3,36 @@ library darthotel;
 import 'dart:io';
 import 'dart:async';
 import 'package:mustache/mustache.dart' show Template;
-
+import 'package:json_object/json_object.dart';
 import 'package:react/react.dart' as React;
 import 'package:react/react_server.dart' as reactServer;
-
-//constants
+import 'package:shelf/shelf_io.dart' as io;
+import 'package:shelf_static/shelf_static.dart';
 import 'package:darthotel/constans/consts.dart' show dataPath, templatePath , webPath, webIndexPath;
-//components
 import 'package:darthotel/components/HotelComponent.dart';
 
-
 var hotelComponent = React.registerComponent(() => new HotelComponent());
-
 
 /**
  * Asynchronously fetches hotels data
  */
 Future getHotelsData () async {
-
   File hotels = new File(dataPath);
   try {
     return await hotels.readAsString();
   } catch (e) {
     print(e);
   }
+}
 
+/**
+ * @params data
+ */
+Future<Map> processData (String data) async {
+  JsonObject hotelInformation = new JsonObject.fromJsonString(data);
+  List<Map> hotels = hotelInformation.Establishments;
+  //React server side render
+  return {'hotelsServer': React.renderToString(hotelComponent({'hotels': hotels, 'filter': ''}))};
 }
 
 /**
@@ -88,43 +93,27 @@ Future writeTemplate (String content) async {
   );
 }
 
-/**
- * Set up web server
- */
-Future setupServer () async {
-
-  HttpServer server = await HttpServer.bind('127.0.0.1', 8080);
-  File file = new File(webIndexPath);
-
-  await for (HttpRequest request in server) {
-
-    request.response.headers.contentType = ContentType.HTML;
-
-    try {
-      await file.openRead().pipe(request.response);
-    } catch (e) {
-      print (e);
-      exit(-1);
-    }
-  }
-}
 
 /**
  * App entry point
  */
-Future main () async {
+main () async {
 
   await reactServer.setServerConfiguration();
-
-
-  //what to render with
-  Map dataToCompile = {'hotelsServer': React.renderToString(hotelComponent({'hotels': await getHotelsData()}))};
+  Map dataToCompile = await getHotelsData().then((value) => processData(value));
 
   await processTemplate()
     .then((String templateContent) => compileTemplate(templateContent, dataToCompile)
     .then((String compiledTemplate) => writeTemplate(compiledTemplate)))
     .catchError(print);
 
-  await setupServer();
+//  await setupServer();
+  var handler = createStaticHandler(
+      webPath,
+      defaultDocument: 'index.html',
+      serveFilesOutsidePath: true
+  );
+
+  io.serve(handler, '127.0.0.1', 8080);
 
 }

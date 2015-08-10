@@ -20,4 +20,4 @@ pubspec.lock
 .idea
 
 ### dist ###
-web
+web/index.html

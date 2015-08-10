@@ -1,24 +1,25 @@
 library darthotel.hotelComponent;
 
-import 'package:react/react.dart';
-import 'package:json_object/json_object.dart';
+import 'package:react/react.dart' as React;
+import 'package:darthotel/model/hotel.dart';
 
-class HotelComponent extends Component {
+class HotelComponent extends React.Component {
 
-  Map getInitialState() => {'hotels': props['hotels']};
+  Map getInitialState() => {
+    'hotels': props['hotels'],
+    'filters': state['filters']
+  };
 
-  processHotelsData() {
-    JsonObject hotels = new JsonObject.fromJsonString(state['hotels']);
-    List hotelData = hotels.Establishments;
-    return hotelData;
+  onChange (String value) {
+     print ('buiaka ' + value);
   }
 
-  getHotelName (Map hotel) {
-    JsonObject h = new JsonObject.fromMap(hotel);
-      return div({}, h.Name);
+  void componentDidMount(root) {
+    print ('mounted');
   }
 
-  render() => div({} ,[
-    div({}, processHotelsData().map((hotel) => getHotelName(hotel)).toList())
+  dynamic render() => React.div({} ,[
+    React.input({"type": "text", 'onChange': (React.SyntheticFormEvent e) => onChange(e.target.value)}, state['filters']),
+    React.div({}, props['hotels'].map((hotel) => hotel['Name']).toList())
   ]);
 }
