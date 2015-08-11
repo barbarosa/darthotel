@@ -9,9 +9,7 @@ import 'package:react/react_server.dart' as reactServer;
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 import 'package:darthotel/constans/consts.dart' show dataPath, templatePath , webPath, webIndexPath;
-import 'package:darthotel/components/HotelComponent.dart';
-
-var hotelComponent = React.registerComponent(() => new HotelComponent());
+import 'package:darthotel/components/components.dart' show appComponent;
 
 /**
  * Asynchronously fetches hotels data
@@ -32,7 +30,7 @@ Future<Map> processData (String data) async {
   JsonObject hotelInformation = new JsonObject.fromJsonString(data);
   List<Map> hotels = hotelInformation.Establishments;
   //React server side render
-  return {'hotelsServer': React.renderToString(hotelComponent({'hotels': hotels, 'filter': ''}))};
+  return {'appServer': React.renderToString(appComponent({'hotels': hotels}))};
 }
 
 /**
