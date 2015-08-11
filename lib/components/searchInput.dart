@@ -2,7 +2,7 @@ part of darthotel.components;
 
 class SearchInputComponent extends React.Component {
 
-  Map get userInput => props['userInput'];
+  get userInput => props['userInput'];
 
   void componentDidMount(root) =>
     print('mounted search input');

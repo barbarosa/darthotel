@@ -2,7 +2,7 @@ part of darthotel.components;
 
 class HotelComponent extends React.Component {
 
-  Map get hotels => props['hotels'];
+  List<Map> get hotels => props['hotels'];
 
   void componentDidMount(root) {
     print('mounted hotel component');

@@ -5,14 +5,23 @@ class AppComponent extends React.Component {
   Map<String, List> getInitialState () =>
     { 'hotels': props['hotels'], 'filterText': '' };
 
-  void handleUserInput (filterText) =>
-    setState({'filterText': filterText});
+  String getName (Map hotel) {
+    return hotel['Name'].toLowerCase();
+  }
+
+  void handleUserInput (filterText) {
+    List SortedHotels = props['hotels'];
+    print(filterText);
+    //Filter data
+    List FilteredHotels = SortedHotels.where((f) => getName(f).startsWith(filterText)).toList();
+    //SortedHotels.sort((a, b) => getName(a).compareTo(getName(b)));
+    setState({'hotels': FilteredHotels});
+  }
 
   dynamic render () =>
     React.div({'className': 'hotelsApp'}, [
         searchInputComponent({'userInput': handleUserInput}),
-        hotelComponent({'hotels': props['hotels']}),
-        React.div({}, state['filterText'])
+        hotelComponent({'hotels': state['hotels']}),
       ]
     );
 }
