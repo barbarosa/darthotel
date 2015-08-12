@@ -3,7 +3,7 @@ part of darthotel.components;
 class AppComponent extends React.Component {
 
   Map<String, List> getInitialState () =>
-    { 'hotels': props['hotels'], 'filterText': '' };
+    { 'hotels': props['hotels'].sublist(0, 23), 'filterText': '' };
 
   String getName (Map hotel) {
     return hotel['Name'].toLowerCase();
@@ -15,13 +15,13 @@ class AppComponent extends React.Component {
     //Filter data
     List FilteredHotels = SortedHotels.where((f) => getName(f).startsWith(filterText)).toList();
     //SortedHotels.sort((a, b) => getName(a).compareTo(getName(b)));
-    setState({'hotels': FilteredHotels});
+    setState({'hotels': FilteredHotels.sublist(0, 23)});
   }
 
   dynamic render () =>
     React.div({'className': 'hotelsApp'}, [
         searchInputComponent({'userInput': handleUserInput}),
-        hotelComponent({'hotels': state['hotels']}),
+        hotelListComponent({'hotels': state['hotels']}),
       ]
     );
 }
