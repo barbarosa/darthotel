@@ -1,6 +1,6 @@
 part of darthotel.components;
 
-class AppComponent extends React.Component {
+class AppComponent extends react.Component {
 
   Map<String, List> getInitialState () =>
     { 'hotels': props['hotels'].sublist(0, 23), 'filterText': '' };
@@ -15,11 +15,11 @@ class AppComponent extends React.Component {
     //Filter data
     List FilteredHotels = SortedHotels.where((f) => getName(f).startsWith(filterText)).toList();
     //SortedHotels.sort((a, b) => getName(a).compareTo(getName(b)));
-    setState({'hotels': FilteredHotels.sublist(0, 23)});
+    setState({'hotels': FilteredHotels});
   }
 
   dynamic render () =>
-    React.div({'className': 'hotelsApp'}, [
+    react.div({'className': 'column twelve wide'}, [
         searchInputComponent({'userInput': handleUserInput}),
         hotelListComponent({'hotels': state['hotels']}),
       ]
@@ -27,4 +27,4 @@ class AppComponent extends React.Component {
 }
 
 //register component to react-dart
-dynamic appComponent = React.registerComponent(() => new AppComponent());
+var appComponent = react.registerComponent(() => new AppComponent());

@@ -1,19 +1,24 @@
 part of darthotel.components;
 
-class HotelDetailComponent extends React.Component {
+class HotelDetailComponent extends react.Component {
 
   Hotel get hotel => props['hotel'];
 
   dynamic render () =>
-    React.div({'className': 'content'}, [
-      React.img({
+    react.div({'className': 'ui left aligned content'}, [
+      react.img({
         'className': 'right floated mini ui image',
         'src': hotel.thumbnail,
         'alt': hotel.name
       }),
-      React.div({'className': 'header'}, hotel.name)
+      react.div({'className': 'header'}, hotel.name),
+      stars({'stars': hotel.getStarsList()}),
+      react.div({'className': 'description'}, 'Min price £${hotel.minCost.toString()}'),
+      react.div({'className': 'ui divider'}),
+      react.div({'className': 'extra content'}, [
+        react.p({}, 'Rating ${hotel.userRating.toString()} from ${hotel.totalRatings.toString()} reviewers')
+      ])
     ]);
 }
 
-//register component to react-dart
-dynamic hotelDetailComponent = React.registerComponent(() => new HotelDetailComponent());
+var hotelDetailComponent = react.registerComponent(() => new HotelDetailComponent());

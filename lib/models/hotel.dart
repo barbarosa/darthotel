@@ -23,4 +23,15 @@ class Hotel {
     this.distance = hotel['Distance'].ceilToDouble();
     this.thumbnail = hotel['ThumbnailUrl'];
   }
+
+
+  List getStarsList () {
+
+    var starsList = [];
+    for (var i = 0; i < this.stars; i++) {
+      starsList.add('star');
+    }
+    return starsList;
+  }
+
 }

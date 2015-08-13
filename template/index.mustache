@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Dart Hotels</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/components/card.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/components/image.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/semantic.min.css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.0.8/themes/default/assets/fonts/icons.svg">
 </head>
-<body>
-
-<h1 style="color: orangered; text-align: center">darthotel</h1>
-
-<div id="hotels-wrapper">
+<body style="background: #F7F8F5">
+<div class="ui hidden divider"></div>
+<h1  class="ui teal center aligned header" style="font-size: 48px">darthotel</h1>
+<div class="ui hidden divider"></div>
+<div class="ui center aligned grid" id="hotels-wrapper">
     {{{ appServer }}}
 </div>
+<div class="ui hidden divider"></div>
 
 <script async type="application/javascript" src="packages/react/react.js"></script>
 <script async type="application/dart" src="client.dart"></script>

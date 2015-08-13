@@ -1,6 +1,6 @@
 part of darthotel.components;
 
-class HotelListComponent extends React.Component {
+class HotelListComponent extends react.Component {
 
   List<Map> get hotels => props['hotels'];
 
@@ -8,10 +8,10 @@ class HotelListComponent extends React.Component {
     print('mounted hotel component');
   }
 
-  dynamic render() => React.div({} ,[
-    React.div({'className': 'ui cards'}, hotels.map((hotel) {
+  render() => react.div({'className': 'ui left aligned'} ,[
+    react.div({'className': 'ui cards'}, hotels.map((hotel) {
 
-      return React.div({'className': 'card'}, [
+      return react.div({'className': 'card'}, [
         hotelDetailComponent({'hotel': new Hotel(hotel)})
       ]);
 
@@ -19,5 +19,4 @@ class HotelListComponent extends React.Component {
   ]);
 }
 
-//register component to react-dart
-dynamic hotelListComponent = React.registerComponent(() => new HotelListComponent());
+var hotelListComponent = react.registerComponent(() => new HotelListComponent());

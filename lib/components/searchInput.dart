@@ -1,6 +1,6 @@
 part of darthotel.components;
 
-class SearchInputComponent extends React.Component {
+class SearchInputComponent extends react.Component {
 
   get userInput => props['userInput'];
 
@@ -8,8 +8,9 @@ class SearchInputComponent extends React.Component {
     print('mounted search input');
 
   dynamic render() =>
-    React.input({'type': 'text', 'onChange': (React.SyntheticFormEvent e) => userInput(e.target.value)});
-
+    react.div({'className': 'ui right action input'}, [
+      react.input({'type': 'text', 'onChange': (react.SyntheticFormEvent e) => userInput(e.target.value)})
+    ]);
 }
 //register component to react-dart
-dynamic searchInputComponent = React.registerComponent(() => new SearchInputComponent());
+var searchInputComponent = react.registerComponent(() => new SearchInputComponent());
