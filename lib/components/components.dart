@@ -8,3 +8,5 @@ part 'hotelList.dart';
 part 'hotelDetail.dart';
 part 'searchInput.dart';
 part 'stars.dart';
+part 'actions.dart';
+part 'selector.dart';

@@ -1,6 +1,6 @@
 part of darthotel.components;
 
-class Stars extends react.Component {
+class _Stars extends react.Component {
 
   List get starsList => props['stars'];
 
@@ -14,4 +14,4 @@ class Stars extends react.Component {
     ]);
 }
 
-var stars = react.registerComponent(() => new Stars());
+var stars = react.registerComponent(() => new _Stars());
