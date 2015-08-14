@@ -7,16 +7,17 @@ class _Actions extends react.Component {
   get selectedFilter => props['selectedFilter'];
 
   render() =>
-    react.div({'className': 'center aligned container'}, [
-      react.div({'className': 'ui text two item menu'}, [
-        react.div({'className': 'ui action input'}, [
-          searchInputComponent({
-            'userInput': handleInput,
-            'selectedFilter': selectedFilter
-          }),
-          selector({'selectFilterAction': selectFilterAction})
-        ])
-      ])
+    react.div({'className': 'ui center aligned container'}, [
+        react.div({'className': 'ui centered aligned item'}, [
+          react.div({'className': 'ui action input'}, [
+            searchInputComponent({
+              'userInput': handleInput,
+              'selectedFilter': selectedFilter
+            }),
+            selector({'selectFilterAction': selectFilterAction})
+          ])
+        ]),
+      react.div({'className': 'ui hidden divider'})
     ]);
 }
 

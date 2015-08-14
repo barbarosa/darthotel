@@ -13,8 +13,8 @@ class _Selector extends react.Component {
         react.option({'value': 'name'}, 'Name'),
         react.option({'value': 'stars'}, 'Stars'),
         react.option({'value': 'price'}, 'Price'),
-        react.option({'value': 'total_rating'}, 'Total Ratings'),
-        react.option({'value': 'user_rating'}, 'Best Rating')
+        react.option({'value': 'user_rating'}, 'User Rating'),
+        react.option({'value': 'total_rating'}, 'Total Ratings')
     ]);
 }
 

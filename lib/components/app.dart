@@ -13,15 +13,9 @@ class _AppComponent extends react.Component {
     'name': 'Name',
     'stars': 'Stars',
     'price': 'Price',
-    'total_rating': 'Total Ratings',
-    'user_rating': 'Best Ratings'
+    'user_rating': 'User Rating',
+    'total_rating': 'Total Ratings'
   };
-
-
-//  TODO move in hotel model class
-  String getName (Map hotel) {
-    return hotel['Name'].toLowerCase();
-  }
 
   void selectFilterAction (String selectedFilter) {
     setState({
@@ -29,16 +23,21 @@ class _AppComponent extends react.Component {
     });
   }
 
-  void handleUserInput (String filterText) {
-    List SortedHotels = props['hotels'];
-    print(filterText);
-    //Filter data
-    List FilteredHotels = SortedHotels.where((f) => getName(f).startsWith(filterText)).toList();
-    //SortedHotels.sort((a, b) => getName(a).compareTo(getName(b)));
+  Future<String> _getInitialSelectedFilter() async =>
+    state['selectedFilter'];
+
+  componentDidMount(root) =>
+     _getInitialSelectedFilter();
+
+  Future handleUserInput (String filterText) async {
+
+    List filteredHotels = new hotelList(props['hotels'])
+          .FilterHotels(props['hotels'], filterText, await _getInitialSelectedFilter());
+
     setState({
-      'hotels': FilteredHotels.length > 16
-                ? FilteredHotels.sublist(0, 16)
-                : FilteredHotels
+      'hotels': filteredHotels.length > 16
+                ? filteredHotels.sublist(0, 16)
+                : filteredHotels
     });
   }
 
@@ -49,7 +48,7 @@ class _AppComponent extends react.Component {
           'selectFilterAction': selectFilterAction,
           'selectedFilter': state['selectedFilter']
         }),
-        hotelListComponent({'hotels': state['hotels']}),
+        hotelListComponent({'hotels': state['hotels']})
       ]
     );
 }

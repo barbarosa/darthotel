@@ -17,7 +17,7 @@ class _HotelDetailComponent extends react.Component {
       react.div({'className': 'description'}, 'Located ${hotel.distance.toString()} km from the center'),
       react.div({'className': 'ui divider'}),
       react.div({'className': 'extra content'}, [
-        react.p({}, 'Rating ${hotel.userRating.toString()} from ${hotel.totalRatings.toString()} reviewers')
+        react.p({}, '${hotel.userRatingTitle} (${hotel.userRating.toString()}) rating from ${hotel.totalRatings.toString()} reviewers')
       ])
     ]);
 }

@@ -1,4 +1,4 @@
-library darthotel.hotel;
+part of darthotel.models;
 
 class Hotel {
 
@@ -10,20 +10,21 @@ class Hotel {
   int totalRatings;
   String userRatingTitle;
   num minCost;
-  num distance;
+  String distance;
   String thumbnail;
 
-  Hotel(Map<String, dynamic> this.hotel) {
+  Hotel(Map<String, Object> this.hotel) {
     this.name = hotel['Name'];
     this.stars = hotel['Stars'];
     this.userRating = hotel['UserRating'];
     this.totalRatings = hotel['UserRatingCount'];
     this.userRatingTitle = hotel['UserRatingTitle'];
     this.minCost = hotel['MinCost'];
-    this.distance = hotel['Distance'].ceilToDouble();
+    this.distance = hotel['Distance'].toStringAsFixed(2);
     this.thumbnail = hotel['ThumbnailUrl'];
   }
 
+  String getNameToFilter () => this.name.toLowerCase();
 
   List getStarsList () {
 
