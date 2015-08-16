@@ -6,6 +6,10 @@ class hotelList {
 
   hotelList(List this.hotels);
 
+  /// @param hotels The data to filter
+  /// @param filter Text input to filter
+  /// @param filterBy Which key to filter by ex Name, Stars etc
+  /// @returns Filtered hotels
   List FilterHotels (List hotels, String filter, String filterBy) {
 
     String _getProperty (Map hotel) {

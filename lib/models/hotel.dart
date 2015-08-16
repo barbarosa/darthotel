@@ -24,8 +24,6 @@ class Hotel {
     this.thumbnail = hotel['ThumbnailUrl'];
   }
 
-  String getNameToFilter () => this.name.toLowerCase();
-
   List getStarsList () {
 
     var starsList = [];

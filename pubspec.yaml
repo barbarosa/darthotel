@@ -1,6 +1,13 @@
 name: "darthotel"
 version: "1.0.0"
-author: "Barbarosa Software Ltd"
+description: >
+ A basic application displaying hotels with filters and sorting
+ using react-dart and shelf + mustache to render isomorphic react components
+ (both component for the client and server).
+author: "Barbarosa Software Ltd <hello@barbarosa.software>"
+homepage: "https://github.com/barbarosa/darthotel"
+environment:
+ sdk: ">=1.1.0 <2.0.0"
 dependencies:
   react: "0.7.3"
   mustache: "0.2.3"
