@@ -1,5 +1,7 @@
 library darthotel;
 
+import 'dart:io';
+
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_static/shelf_static.dart';
 import 'package:darthotel/constans/consts.dart';
@@ -7,6 +9,8 @@ import 'package:darthotel/constans/consts.dart';
 import 'package:darthotel/server_utils/template_render.dart' show renderTemplate;
 
 main () async {
+
+  var port = int.parse(Platform.environment['PORT']);
 
   await renderTemplate();
 
@@ -16,5 +20,5 @@ main () async {
       serveFilesOutsidePath: true
   );
 
-  io.serve(handler, '127.0.0.1', 8080);
+  io.serve(handler, '0.0.0.0', port);
 }
