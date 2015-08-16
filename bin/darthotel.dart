@@ -10,8 +10,6 @@ import 'package:darthotel/server_utils/template_render.dart' show renderTemplate
 
 main () async {
 
-  var port = int.parse(Platform.environment['PORT']);
-
   await renderTemplate();
 
   var handler = createStaticHandler(
@@ -20,5 +18,5 @@ main () async {
       serveFilesOutsidePath: true
   );
 
-  io.serve(handler, '0.0.0.0', port);
+  io.serve(handler, '0.0.0.0', 5000);
 }
