@@ -1,10 +1,10 @@
 part of darthotel.models;
 
-class hotelList {
+class HotelList {
 
   List hotels;
 
-  hotelList(List this.hotels);
+  HotelList(List this.hotels);
 
   /// @param hotels The data to filter
   /// @param filter Text input to filter

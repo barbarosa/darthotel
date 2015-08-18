@@ -68,3 +68,4 @@ In order to check the working JavaScript please use [Chromium](https://www.chrom
 * Investigate use of Streams for custom user events
 * Add further documentation
 * Add unit test!
+* Add paginator component

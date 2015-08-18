@@ -26,12 +26,14 @@ class _AppComponent extends react.Component {
   Future<String> _getInitialSelectedFilter() async =>
     state['selectedFilter'];
 
+
   componentDidMount(root) =>
      _getInitialSelectedFilter();
 
+
   Future handleUserInput (String filterText) async {
 
-    List filteredHotels = new hotelList(props['hotels'])
+    List filteredHotels = new HotelList(props['hotels'])
           .FilterHotels(props['hotels'], filterText, await _getInitialSelectedFilter());
 
     setState({
